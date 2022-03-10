@@ -1,1 +1,1 @@
-# Repositório de todos os exercicios do bootcamp IT Meli/Digital house
+# Repositório de exercicios do bootcamp IT Meli
