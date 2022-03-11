@@ -7,6 +7,11 @@ public class Main {
         System.out.println("Idade: " + pessoa.idade);
         System.out.println("Peso: " + pessoa.peso);
         System.out.println("Altura: " + pessoa.altura);
+        if (pessoa.ehMaiorIdade()) {
+            System.out.println("Pessoa é maior de idade");
+        } else {
+            System.out.println("Pessoa não é maior de idade");
+        }
         System.out.println("--------------------");
 
         if (pessoa.calcularImc() == -1) {
