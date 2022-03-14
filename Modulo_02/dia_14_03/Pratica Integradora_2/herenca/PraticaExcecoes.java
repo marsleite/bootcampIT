@@ -8,10 +8,11 @@ public class PraticaExcecoes {
     PraticaExcecoes p = new PraticaExcecoes();
     try {
       p.divide();
-    } catch (ArithmeticException e) {
-      System.out.println("Ocorreu um erro: " + e.getMessage());
+      System.out.println("Resultado: " + p.razao);
+    } catch (IllegalArgumentException e) {
+      System.out.println("Erro: " + e.getMessage());
     } finally {
-      System.out.println("Programa finalizado!");
+      System.out.println("Programa finalizado");
     }
   }
 
