@@ -1,6 +1,21 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        Pessoa pessoa = new Pessoa("Marcelo", 36, "1234501", 95.5f, 1.95f);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Digite o nome: ");
+        String nome = scanner.nextLine();
+        System.out.println("Digite a idade: ");
+        int idade = scanner.nextInt();
+        System.out.println("Digite o id: ");
+        String id = scanner.nextLine();
+        System.out.println("Digite o peso: ");
+        float peso = scanner.nextFloat();
+        System.out.println("Digite a altura: ");
+        float altura = scanner.nextFloat();
+        scanner.close();
+        // criando um objeto da classe Pessoa
+        Pessoa pessoa = new Pessoa(nome, idade, id, peso, altura);
         System.out.println("--------------------");
         System.out.println("id: " + pessoa.id);
         System.out.println("Nome: " + pessoa.nome);
