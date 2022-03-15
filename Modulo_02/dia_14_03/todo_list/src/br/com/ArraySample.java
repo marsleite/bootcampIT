@@ -12,13 +12,10 @@ public class ArraySample {
     agenda.add("Juca Bala; 11 1111-11" );
     agenda.add("Marcelo; 7198787-2907");
     agenda.add("Maria Antonieta; 44-444-444");
+    agenda.add("Rebeca Leite; 55-8555-2572");
 
-    int i;
     System.out.println("Percorrendo o ArrayList");
-    int n = agenda.size();
 
-    for (i = 0; i < n; i++) {
-      System.out.printf("Posição %d- %s\n", i, agenda.get(i));
-    }
+    agenda.forEach(data -> System.out.println(data));
   }
 }
