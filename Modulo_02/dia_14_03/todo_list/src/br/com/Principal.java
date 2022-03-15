@@ -7,7 +7,10 @@ public class Principal {
   public static void main(String[] args) {
     System.out.println("Minhas Tarefas");
     System.out.println("--------------");
-    Tarefa tarefa1 = new Tarefa();
-    tarefa1.exibirTarefa();
+    Tarefa tarefa = new Tarefa();
+    tarefa.adicionarTarefa("Comprar Leite");
+    tarefa.adicionarTarefa("Estudar java");
+    tarefa.adicionarTarefa("Ler um livro");
+    tarefa.exibirTarefa();
   }
 }

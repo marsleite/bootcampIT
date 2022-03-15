@@ -1,10 +1,20 @@
 package br.com.tarefas;
 
+import java.util.ArrayList;
+
 public class Tarefa {
 
-  String descriction;
+  ArrayList<String> tarefas = new ArrayList<String>();
+  private String descricao;
+
+  public void adicionarTarefa(String tarefa) {
+    tarefas.add(tarefa);
+  }
 
   public void exibirTarefa() {
-    System.out.println(descriction);
+    for (String tarefa : tarefas) {
+      System.out.println(tarefa);
+    }
   }
+
 }
