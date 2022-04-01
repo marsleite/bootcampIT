@@ -1,45 +1,63 @@
 package com.meli.obterdiploma.service;
 
-import com.meli.obterdiploma.exception.StudentNotFoundException;
 import com.meli.obterdiploma.model.StudentDTO;
 import com.meli.obterdiploma.model.SubjectDTO;
 import com.meli.obterdiploma.repository.IStudentDAO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-
-import org.assertj.core.api.Assertions;
-import org.assertj.core.util.Arrays;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
+import java.util.List;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+
+@ExtendWith(MockitoExtension.class)
 public class ObterDiplomaServiceTest {
+
   @Mock
   private IStudentDAO studentDAO;
 
-  private ObterDiplomaService obterDiplomaService;
+  private ObterDiplomaService diplomaService;
 
   @BeforeEach
-  public void setUp() {
+  public void setup() {
     MockitoAnnotations.openMocks(this);
-    obterDiplomaService = new ObterDiplomaService();
+    diplomaService = new ObterDiplomaService();
+    diplomaService.setStudentDAO(studentDAO);
   }
+
   @Test
-  @DisplayName("Shoul fail when student is not found")
-  public void shouldFailWhenStudentIsNotFound() {
+  @DisplayName("Analise scores pode ser valido")
+  public void testeAnalysisBeValid() {
 
-    // Setup
-    SubjectDTO subject1 = new SubjectDTO("Matematica", 10.0);
-    SubjectDTO subject2 = new SubjectDTO("Portugues", 8.0);
-    SubjectDTO subject3 = new SubjectDTO("Historia", 9.0);
-    StudentDTO student = new StudentDTO(1L, "Joao", "testando", null, Arrays.asList(subject1, subject2, subject3));
-    long id = 2L;
+    // Ensinando o Mockito
+    Mockito.when(studentDAO.findById(any())).thenReturn(this.setMockData());
 
-    // Mock
-    Mockito.when(studentDAO.findById(any())).thenThrow(new StudentNotFoundException("Student not found"));
+    // Teste unitario
+    StudentDTO stu = this.diplomaService.analyzeScores(1L);
+
+    assertNotNull(stu.getStudentName());
+
   }
+
+  public StudentDTO setMockData(){
+    StudentDTO student = new StudentDTO();
+    List<SubjectDTO> subjects = new ArrayList<>();
+
+    student.setId(1L);
+    student.setStudentName("Marcelo");
+    student.setMessage("Mensagem de teste");
+    student.setAverageScore(8.5);
+    subjects.add(new SubjectDTO("Matematica", 8.5));
+    student.setSubjects(subjects);
+
+    return student;
+  }
+
 }
