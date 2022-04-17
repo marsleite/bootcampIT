@@ -1,6 +1,9 @@
 package com.company;
 
-import java.math.BigDecimal;
+import com.company.entity.Products;
+
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -12,20 +15,25 @@ public class Main {
         System.out.println("Digite a quantidade de produtos");
         int n = sc.nextInt();
 
-        double[] products = new double[n];
+        Products[] products = new Products[n];
 
-        for (int i = 0; i < n; i++){
-            products[i] = sc.nextDouble();
+        for (int i =0; i < n; i++) {
+            sc.nextLine();
+            String name = sc.nextLine();
+            double price = sc.nextDouble();
+            products[i] = new Products(name, price);
         }
-
         double sum = 0.0;
         for (int i = 0; i < n; i++) {
-            sum += products[i];
+            sum += products[i].getPrice();
         }
 
         double avg = sum / n;
+        System.out.printf("A média é: %.2f%n", avg);
 
-        System.out.printf("A média dos produtos é: %.2f%n", avg);
+        List<Products> list = Arrays.asList(products);
+        // printar o nome dos produtos e o preço
+        list.stream().forEach(p -> System.out.println(p.getName() + " - " + p.getPrice()));
         sc.close();
     }
 }
